@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_learn_news/common/apis/apis.dart';
+import 'package:flutter_learn_news/common/entity/entity.dart';
 import 'package:flutter_learn_news/common/utils/utils.dart';
 import 'package:flutter_learn_news/common/values/values.dart';
 import 'package:flutter_learn_news/common/widgets/widgets.dart';
+
 
 class SignInPage extends StatefulWidget {
   SignInPage({Key key}) : super(key: key);
@@ -15,6 +18,38 @@ class _SignInPageState extends State<SignInPage> {
   final TextEditingController _emailController = TextEditingController();
   //密码的控制器
   final TextEditingController _passController = TextEditingController();
+
+  // 跳转 注册界面
+  _handleNavSignUp() {
+    Navigator.pushNamed(
+      context,
+      "/sign-up",
+    );
+  }
+
+  // 执行登录操作
+  _handleSignIn() async {
+    if (!duIsEmail(_emailController.value.text)) {
+      toastInfo(msg: '请正确输入邮件');
+      return;
+    }
+    if (!duCheckStringLength(_passController.value.text, 6)) {
+      toastInfo(msg: '密码不能小于6位');
+      return;
+    }
+
+    UserLoginRequestEntity params = UserLoginRequestEntity(
+      email: _emailController.value.text,
+      password: duSHA256(_passController.value.text),
+    );
+
+    UserLoginResponseEntity res = await UserAPI.login(params: params);
+    print(res);
+    // 写本地 access_token , 不写全局，业务：离线登录
+    // 全局数据 gUser
+  }
+
+  ///////////////////////////////
 
   // logo
   Widget _buildLogo() {
@@ -119,28 +154,14 @@ class _SignInPageState extends State<SignInPage> {
               children: [
                 // 注册
                 btnFlatButtonWidget(
-                  onPressed: () {
-                    Navigator.pushNamed(
-                      context,
-                      "/sign-up",
-                    );
-                  },
+                  onPressed: _handleNavSignUp,
                   gbColor: AppColors.thirdElement,
                   title: "Sign up",
                 ),
                 Spacer(),
                 // 登录
                 btnFlatButtonWidget(
-                  onPressed: () {
-                    if (!duIsEmail(_emailController.value.text)) {
-                      toastInfo(msg: '请正确输入邮件');
-                      return;
-                    }
-                    if (!duCheckStringLength(_passController.value.text, 6)) {
-                      toastInfo(msg: '密码不能小于6位');
-                      return;
-                    }
-                  },
+                  onPressed: () => _handleSignIn(),
                   gbColor: AppColors.primaryElement,
                   title: "Sign in",
                 ),
@@ -226,7 +247,7 @@ class _SignInPageState extends State<SignInPage> {
     return Container(
       margin: EdgeInsets.only(bottom: duSetHeight(20)),
       child: btnFlatButtonWidget(
-        onPressed: () {},
+        onPressed: _handleNavSignUp,
         width: 294,
         gbColor: AppColors.secondaryElement,
         fontColor: AppColors.primaryText,
@@ -255,3 +276,4 @@ class _SignInPageState extends State<SignInPage> {
     );
   }
 }
+

@@ -94,7 +94,7 @@ class _SignUpPageState extends State<SignUpPage> {
           Container(
             height: duSetHeight(22),
             margin: EdgeInsets.only(top: duSetHeight(20)),
-            child: FlatButton(
+            child: TextButton(
               onPressed: () => {},
               child: Text(
                 "Fogot password?",

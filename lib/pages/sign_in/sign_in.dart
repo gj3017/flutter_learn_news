@@ -5,7 +5,6 @@ import 'package:flutter_learn_news/common/utils/utils.dart';
 import 'package:flutter_learn_news/common/values/values.dart';
 import 'package:flutter_learn_news/common/widgets/widgets.dart';
 
-
 class SignInPage extends StatefulWidget {
   SignInPage({Key key}) : super(key: key);
 
@@ -16,6 +15,7 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   //email的控制器
   final TextEditingController _emailController = TextEditingController();
+
   //密码的控制器
   final TextEditingController _passController = TextEditingController();
 
@@ -174,7 +174,7 @@ class _SignInPageState extends State<SignInPage> {
           Container(
             height: duSetHeight(22),
             margin: EdgeInsets.only(top: duSetHeight(20)),
-            child: FlatButton(
+            child: TextButton(
               onPressed: () => {},
               child: Text(
                 "Fogot password?",
@@ -276,4 +276,3 @@ class _SignInPageState extends State<SignInPage> {
     );
   }
 }
-

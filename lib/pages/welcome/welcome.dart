@@ -86,13 +86,21 @@ class WelcomePage extends StatelessWidget {
       width: duSetWidth(295),
       height: duSetHeight(44),
       margin: EdgeInsets.only(bottom: duSetHeight(20)),
-      child: FlatButton(
-        color: AppColors.primaryElement,
-        textColor: AppColors.primaryElementText,
+      child: TextButton(
         child: Text("Get started"),
-        shape: RoundedRectangleBorder(
-          borderRadius: Radii.k6pxRadius,
-        ),
+        // shape: RoundedRectangleBorder(
+        //   borderRadius: Radii.k6pxRadius,
+        // ),
+        //  color: AppColors.primaryElement,
+        // textColor: AppColors.primaryElementText,
+        style: ButtonStyle(
+            backgroundColor:
+                MaterialStateProperty.all(AppColors.primaryElement),
+            foregroundColor:
+                MaterialStateProperty.all(AppColors.primaryElementText),
+            shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(borderRadius: Radii.k6pxRadius),
+            )),
         onPressed: () {
           Navigator.pushNamed(
             context,

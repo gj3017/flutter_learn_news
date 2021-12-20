@@ -17,12 +17,17 @@ Widget btnFlatButtonWidget({
   return Container(
     width: duSetWidth(width),
     height: duSetHeight(height),
-    child: FlatButton(
+    child: TextButton(
       onPressed: onPressed,
-      color: gbColor,
-      shape: RoundedRectangleBorder(
-        borderRadius: Radii.k6pxRadius,
-      ),
+      // color: gbColor,
+      // shape: RoundedRectangleBorder(
+      //   borderRadius: Radii.k6pxRadius,
+      // ),
+      style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(gbColor),
+          shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(borderRadius: Radii.k6pxRadius),
+          )),
       child: Text(
         title,
         textAlign: TextAlign.center,
@@ -48,12 +53,17 @@ Widget btnFlatButtonBorderOnlyWidget({
   return Container(
     width: duSetWidth(width),
     height: duSetHeight(height),
-    child: FlatButton(
+    child: TextButton(
       onPressed: onPressed,
-      shape: RoundedRectangleBorder(
-        side: Borders.primaryBorder,
-        borderRadius: Radii.k6pxRadius,
-      ),
+      // shape: RoundedRectangleBorder(
+      //   side: Borders.primaryBorder,
+      //   borderRadius: Radii.k6pxRadius,
+      // ),
+      style: ButtonStyle(
+          shape: MaterialStateProperty.all(
+        RoundedRectangleBorder(
+            side: Borders.primaryBorder, borderRadius: Radii.k6pxRadius),
+      )),
       child: Image.asset(
         "lib/assets/images/icons-$iconFileName.png",
       ),

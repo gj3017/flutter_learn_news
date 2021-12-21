@@ -92,7 +92,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
           // Fogot password
           Container(
-            height: duSetHeight(22),
+            height: duSetHeight(50),
             margin: EdgeInsets.only(top: duSetHeight(20)),
             child: TextButton(
               onPressed: () => {},
